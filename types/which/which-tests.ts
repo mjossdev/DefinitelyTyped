@@ -5,13 +5,14 @@ const path = which.sync('cat'); // $ExpectType string
 const promise: Promise<string> = which('cat');
 const promise1: Promise<string> = which('cat', { all: false });
 const promise2: Promise<string[]> = which('cat', { all: true });
-const promise3: Promise<string> = which('cat', { nothrow: true });
+const promise3: Promise<string | null> = which('cat', { nothrow: true });
+const promise4: Promise<string[] | null> = which('cat', { all: true, nothrow: true });
 
 which('node')
     .then(resolvedPath => {
         resolvedPath; // $ExpectType string
     })
-    .catch(er => {});
+    .catch(er => { });
 
 async () => {
     const path = await which('cat');
